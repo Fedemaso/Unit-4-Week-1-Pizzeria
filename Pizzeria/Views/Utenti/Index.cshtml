@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Pizzeria.Models.Utenti>
+
+@{
+    ViewBag.Title = "Lista Utenti";
+}
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li>@Html.ActionLink("Modifica Pizze", "IndexAdmin", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Ordini", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })
+
+                <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h2 class="text-center m-4">Utenti</h2>
+
+<table class="table table-bordered table-striped container body-content">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var utente in Model)
+        {
+            <tr>
+                <td>@utente.Nome</td>
+                <td>@utente.Email</td>
+                <td>
+                    @Html.ActionLink("Modifica", "Edit", new { id = utente.ID }, new { @class = "btn btn-warning" }) |
+                    @*<button onclick="deleteUtente(@utente.ID)" class="btn btn-danger">Cancella</button>*@
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script>
+    function deleteUtente(id) {
+        if (confirm('Sei sicuro di voler eliminare questo utente?')) {
+            $.post('/Utenti/DeleteConfirmed', { id: id }, function (response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message);
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,45 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+  
+  
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+
+body{
+    background-color:lightcyan;
+    font-size:1.5em;
+    font-family: 'Architects Daughter', cursive;
+font-family: 'Montserrat', sans-serif;
+}
+
+
+
+#carduser{
+    height:500px
+}
+
+#cardimg {
+   height:300px
+}
+
+#carduser:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-15px);
+    transition: all 0.8s ease;
+}
+
+
+nav {
+   background-color:rgb(94,233,200);
+
+}
+

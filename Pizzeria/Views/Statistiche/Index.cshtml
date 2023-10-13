@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li>@Html.ActionLink("Modifica Pizze", "IndexAdmin", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Ordini", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })
+
+                <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<h2 class="text-center m-4">Statistiche</h2>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Numero totale di ordini evasi:</h4>
+            <p id="numeroOrdiniEvasi"></p>
+        </div>
+        <div class="col-md-6">
+            <h4>Totale incassato per la giornata:</h4>
+            <input type="date" id="data" class="form-control mb-2">
+            <button class="btn btn-primary" onclick="getTotaleIncassato()">Ottieni totale</button>
+            <button class="btn btn-secondary" onclick="pulisciRicerca()">Pulisci</button>
+            <p id="totaleIncassato"></p>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $.get("/Statistiche/GetNumeroOrdiniEvasi", function (data) {
+                $("#numeroOrdiniEvasi").text(data);
+            });
+        });
+
+        function getTotaleIncassato() {
+            var data = $("#data").val();
+            $.get("/Statistiche/GetTotaleIncassato", { data: data }, function (data) {
+                $("#totaleIncassato").text(data + " €");
+            });
+        }
+
+        function pulisciRicerca() {
+            $("#data").val(''); 
+            $("#totaleIncassato").text(''); 
+        }
+
+    </script>
+}

@@ -1,0 +1,76 @@
+﻿
+@model Pizzeria.Models.CarrelloRiepilogo.Riepilogo
+
+<h4>Riepilogo Carrello</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome Pizza</th>
+            <th>Quantità</th>
+            <th>Prezzo</th>
+            <th>Totale</th>
+            <th>Azione</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.NomePizza</td>
+                <td>@item.Quantita</td>
+                <td>@item.Prezzo</td>
+                <td>@item.Totale</td>
+                <td>
+                    <button data-id="@item.Id" class="btn btn-danger remove-item">Rimuovi</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Totale: @Model.TotaleOrdine</p>
+
+<form action="@Url.Action("ConcludiOrdineFinal", "Ordini")" method="post">
+    <div class="form-group">
+        <label>Indirizzo di Spedizione:</label>
+        <input type="text" name="IndirizzoSpedizione" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Note:</label>
+        <textarea name="Note" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Invia Ordine</button>
+    <button type="button" class="btn btn-warning" id="svuota-carrello">Svuota Carrello</button>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $(".remove-item").click(function() {
+            var itemId = $(this).data("id");
+            $.ajax({
+                url: '@Url.Action("RimuoviDalCarrello", "Ordini")',
+                type: 'POST',
+                data: { id: itemId },
+                success: function(data) {
+                    $('#carrelloModal .modal-body').html(data);
+                },
+                error: function() {
+                    alert("Errore durante la rimozione dell'articolo.");
+                }
+            });
+        });
+
+        $("#svuota-carrello").click(function() {
+            $.ajax({
+                url: '@Url.Action("SvuotaCarrello", "Ordini")',
+                type: 'POST',
+                success: function(data) {
+                    $('#carrelloModal .modal-body').html(data);
+                },
+                error: function() {
+                    alert("Errore durante lo svuotamento del carrello.");
+                }
+            });
+        });
+    });
+</script>

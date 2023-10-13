@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Chi Siamo";
+}
+
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 fs-3 fw-bold ">
+                <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Informazioni", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Lista Pizze", "IndexUser", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal">
+            Carrello
+        </button>
+    </div>
+</nav>
+
+<div id="bodychisiamo" class="container body-content ">
+
+
+    
+
+    <h2 class="fw-bold my-3">
+        Benvenuti da Panucci's Pizza!  🍕
+    </h2>
+
+    <img src="~/Content/Imgs/pizzeria.jfif" class="my-4" alt="panucci foto" width="250">
+    <p>
+        Da generazioni, Panucci's Pizza è stata una pietra miliare nel cuore di Nuova New York, servendo le peggiori pizze autentiche e assolutamente non deliziose ai newnewyorkesi e ai visitatori da ogni parte del mondo. Fondata nel 20° secolo, la nostra pizzeria ha una storia ricca e unica, intrecciata con le vite di coloro che hanno camminato attraverso le nostre porte.
+    </p>
+
+    <h2 class="fw-bold my-3">
+        La Nostra Storia
+    </h2>
+    <img src="~/Content/Imgs/panuccifoto.jpg" class="my-4" alt="panucci foto" width="250">
+    <p>
+        Tutto è iniziato con il Signor Panucci, un appassionato amante della pizza con un sogno: creare la migliore pizzeria di New York. Con una ricetta segreta, pochissima igiene e un amore per lo sporco, ha aperto Panucci's Pizza, diventando rapidamente un punto di riferimento dei bassifondi di Nuova New York.
+
+        Nel corso degli anni, abbiamo avuto il piacere di impiegare alcuni dei personaggi più iconici della città, tra cui il nostro famoso fattorino, Fry. Fry non era solo un dipendente, ma una parte fondamentale della famiglia Panucci. Con il suo atteggiamento spensierato e la sua dedizione al lavoro, ha consegnato pizze con un sorriso, indipendentemente dalle sfide che New York gli ha lanciato.
+    </p>
+    <h2 class="fw-bold my-3"> Oltre la Pizza </h2>
+    <img src="~/Content/Imgs/seymour.jfif" class="my-4" alt="panucci foto" width="250">
+    <p>
+        Ma Panucci's Pizza non è solo un luogo dove mangiare; è un luogo di ricordi. Uno dei momenti più toccanti della nostra storia riguarda Seymour, il fedele cane di Fry. La sua lealtà e dedizione rappresentano ciò che Panucci's Pizza simboleggia: famiglia, comunità e amore incondizionato.
+    </p>
+    <h2 class="fw-bold my-3">  Un Viaggio nel Tempo</h2>
+    <img src="~/Content/Imgs/fry.jfif" class="my-4" alt="panucci foto" width="250">
+    <p>
+        Sebbene la nostra storia abbia avuto momenti di pausa, come la misteriosa scomparsa di Fry durante la notte di Capodanno del 1999, il nostro spirito e la nostra passione per la pizza non sono mai svaniti. Ogni fetta di pizza che serviamo è un omaggio al passato e una promessa per il futuro.
+    </p>
+    <h2 class="fw-bold my-3"> Vieni a Trovarci!</h2>
+    <p>
+        Oggi, siamo orgogliosi di continuare la tradizione, servendo le stesse pizze oscene che hanno reso Panucci's Pizza famosa. Invitiamo tutti a venire e fare parte della nostra storia. Che tu sia un cliente di vecchia data o un nuovo amico, le porte di Panucci's Pizza sono sempre aperte.
+    </p>
+</div>

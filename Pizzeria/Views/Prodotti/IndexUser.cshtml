@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Pizzeria.Models.Prodotti>
+
+@{
+    ViewBag.Title = "Prodotti";
+}
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand" >
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 fs-3 fw-bold ">
+                <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Informazioni", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Lista Pizze", "IndexUser", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal">
+            Carrello
+        </button>
+    </div>
+</nav>
+
+
+
+
+
+
+
+<h2 class="text-center m-4">Le nostre pizze</h2>
+
+<div class="row container-fluid body-content text-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 ">
+            <div id="carduser" class="card m-4">
+                <img class="card-img-top" id="cardimg" src="@(!string.IsNullOrEmpty(item.Foto) ? Url.Content(item.Foto) : Url.Content("~/path/to/default/image.jpg"))" alt="@item.Nome">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">@Html.DisplayFor(modelItem => item.Nome)</h3>
+                    <p class="card-text">Prezzo: @Html.DisplayFor(modelItem => item.Prezzo) €</p>
+                    <p class="card-text">Tempo Consegna: @Html.DisplayFor(modelItem => item.TempoConsegna) min</p>
+                    <a href="@Url.Action("Dettagli", "Prodotti", new { id = item.ID })" class="btn btn-primary">Dettagli</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

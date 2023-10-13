@@ -1,0 +1,64 @@
+﻿@model Pizzeria.Models.Prodotti
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li>@Html.ActionLink("Modifica Pizze", "IndexAdmin", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<h2 class="text-center m-4">Modifica Pizza</h2>
+
+@using (Html.BeginForm("Edit", "Prodotti", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID, "ID")
+        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, "Nome Pizza")
+        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Foto)
+        <input type="file" name="Foto" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Prezzo, "Prezzo")
+        @Html.EditorFor(model => model.Prezzo, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TempoConsegna, "Tempo di Consegna")
+        @Html.EditorFor(model => model.TempoConsegna, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ingredienti, "Ingredienti")
+        @Html.TextAreaFor(model => model.Ingredienti, new { htmlAttributes = new { @class = "form-control", @rows = "5" } })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+}

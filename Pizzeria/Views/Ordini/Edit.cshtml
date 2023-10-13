@@ -1,0 +1,66 @@
+﻿
+@model Pizzeria.Models.Ordini
+
+@{
+    ViewBag.Title = "Modifica Ordine";
+}
+
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li>@Html.ActionLink("Modifica Pizze", "IndexAdmin", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Ordini", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })
+
+                <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<h2 class="text-center m-4">Modifica Ordine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_Utente)
+        @Html.DisplayFor(model => model.ID_Utente)
+        @Html.HiddenFor(model => model.ID_Utente)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataOrdine)
+        @Html.EditorFor(model => model.DataOrdine, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IndirizzoSpedizione)
+        @Html.EditorFor(model => model.IndirizzoSpedizione, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Note)
+        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Stato)
+        @Html.DropDownListFor(model => model.Stato, new SelectList(new List<string>() { "In attesa", "In lavorazione", "Ordine evaso" }), new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+}

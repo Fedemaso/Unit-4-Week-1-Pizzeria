@@ -1,0 +1,54 @@
+﻿@model Pizzeria.Models.Prodotti
+
+@{
+    ViewBag.Title = "Dettagli Prodotto";
+}
+
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 fs-3 fw-bold ">
+                <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Informazioni", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Lista Pizze", "IndexUser", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal">
+            Carrello
+        </button>
+    </div>
+</nav>
+
+
+<h2 class="text-center m-4 fw-bold">@Model.Nome</h2>
+
+<div class="card container body-content">
+    <img class="card-img-top mt-3" src="@Url.Content(Model.Foto)" alt="@Model.Nome">
+    <div class="card-body">
+        <h2 class="card-title fw-bold">@Model.Nome</h2>
+        <p class="card-text">Prezzo: @Model.Prezzo €</p>
+        <p class="card-text">Tempo Consegna: @Model.TempoConsegna min</p>
+        <p class="card-text">Ingredienti: @Model.Ingredienti</p>
+
+        @using (Html.BeginForm("AggiungiAlCarrello", "Ordini", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>Quantità:</label>
+                <input type="number" name="quantita" min="1" max="10" value="1" class="form-control" />
+                <input type="hidden" name="prodottoId" value="@Model.ID" />
+            </div>
+            <button type="submit" class="btn btn-success mt-4">Aggiungi al carrello</button>
+        }
+
+        <a href="@Url.Action("IndexUser", "Prodotti")" class="btn btn-secondary mt-4">Torna alla lista</a>
+    </div>
+</div>
+

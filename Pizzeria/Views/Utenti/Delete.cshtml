@@ -1,0 +1,21 @@
+﻿@*@model Pizzeria.Models.Utenti
+
+@{
+    ViewBag.Title = "Cancella Utente";
+}
+
+<h2>Sei sicuro di voler cancellare questo utente?</h2>
+
+<div>
+    <h4>@Model.Nome</h4>
+    <h4>@Model.Email</h4>
+    @using (Html.BeginForm("DeleteConfirmed", "Utenti", new { id = Model.ID }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancella" class="btn btn-danger" /> |
+            @Html.ActionLink("Annulla", "Index")
+        </div>
+    }
+</div>*@

@@ -1,0 +1,124 @@
+﻿@model Pizzeria.Models.Account
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<nav id="navuser" class="navbar navbar-expand-sm navbar-toggleable-sm  ">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="~/Content/Imgs/panuccinosfondo.png" alt="Logo Panucci's Pizza" width="250">
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 fs-3 fw-bold ">
+                <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Informazioni", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carrelloModal">
+            Carrello
+        </button>
+    </div>
+</nav>
+<div class="row justify-content-evenly">
+    <div class="col-4 mt-5">
+        <div class="card mb-4 hover-card">
+            <div class="card-header">
+                Login
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Usa un account esistente</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LoginModel.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LoginModel.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LoginModel.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LoginModel.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.LoginModel.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LoginModel.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.LoginModel.RememberMe)
+                                @Html.LabelFor(m => m.LoginModel.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 mt-5">
+        <div class="card hover-card">
+            <div class="card-header">
+                Registrazione
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Registrati</h4>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterModel.Nome, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.RegisterModel.Nome, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RegisterModel.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterModel.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.RegisterModel.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RegisterModel.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterModel.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.RegisterModel.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RegisterModel.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Registrati" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
